@@ -27,7 +27,19 @@ main:
 # The return value should be stored in a0
 factorial:
     # YOUR CODE HERE
+    addi t0, x0, 1  # t0 represents the corrent iterative time
+    addi t1, x0, 1  # t1 represents the production
+    j Loop
 
+Loop:
+    beq t0, a0, Exit
+    mul t1, t1, t0
+    addi t0, t0, 1
+    j Loop
+    
     # This is how you return from a function. You'll learn more about this later.
     # This should be the last line in your program.
+Exit:
+    mul t1, t1, t0
+    add a0, x0, t1
     jr ra
